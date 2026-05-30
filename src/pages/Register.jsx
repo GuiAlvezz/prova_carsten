@@ -22,6 +22,16 @@ function Register() {
           senha,
         }
       );
+      
+      await api.post(
+          "/api/v1/auth/send-code",
+        {
+          email
+        }
+      );
+
+      alert("Cadastro realizado! Verifique seu e-mail.");
+
 
       console.log(response.data);
 

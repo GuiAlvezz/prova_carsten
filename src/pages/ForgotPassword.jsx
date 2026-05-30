@@ -5,6 +5,7 @@ import "../styles/forgotPassword.css";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
+
   const navigate = useNavigate();
 
   async function handleForgot(e) {
@@ -18,29 +19,36 @@ function ForgotPassword() {
 
       alert("Código enviado!");
 
+      navigate("/reset-password");
+
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response?.data);
+
+      alert(
+        error.response?.data?.message ||
+        "Erro ao enviar código"
+      );
     }
   }
 
-  navigate("/reset-password");
-
   return (
     <div className="container">
-    <div className="card-forgot">
-      <h1>Esqueci minha senha</h1>
-    <form onSubmit={handleForgot}>
-      <input
-        type="email"
-        placeholder="Seu email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="card-forgot">
+        <h1>Esqueci minha senha</h1>
 
-      <button type="submit">
-        Recuperar senha
-      </button>
-    </form>
-    </div>
+        <form onSubmit={handleForgot}>
+          <input
+            type="email"
+            placeholder="Seu email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <button type="submit">
+            Recuperar senha
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

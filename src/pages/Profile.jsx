@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import "../styles/profile.css";
 
 function Profile() {
   const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
 
   async function loadUser() {
     try {
@@ -20,8 +24,15 @@ function Profile() {
       setUser(response.data.data);
 
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response?.data);
+
+      alert("Erro ao carregar perfil");
     }
+  }
+
+  function logout() {
+    localStorage.removeItem("token");
+    navigate("/");
   }
 
   useEffect(() => {
@@ -34,19 +45,53 @@ function Profile() {
 
   return (
     <div className="container">
-    <div className="card-profile">
-      <h1>Perfil</h1>
+      <div className="card-profile">
 
-      <p>Nome: {user.name}</p>
-      <p>Email: {user.email}</p>
-    </div>
+        <h1>Meu Perfil</h1>
+
+        <div className="avatar">
+          👤
+        </div>
+
+        <div className="info">
+          <p>
+            <strong>Nome:</strong> {user.nome || user.name}
+          </p>
+
+          <p>
+            <strong>E-mail:</strong> {user.email}
+          </p>
+
+          <p>
+            <strong>ID:</strong> {user.id}
+          </p>
+
+          <p>
+            <strong>Status:</strong>{" "}
+            {user.email_verificado
+              ? "Verificado"
+              : "Não Verificado"}
+          </p>
+        </div>
+
+        <div className="actions">
+          <button
+            onClick={() => navigate("/reset-password")}
+          >
+            Alterar Senha
+          </button>
+
+          <button
+            onClick={logout}
+            className="logout-btn"
+          >
+            Sair
+          </button>
+        </div>
+
+      </div>
     </div>
   );
-}
-
-function logout() {
-  localStorage.removeItem("token");
-  navigate("/");
 }
 
 export default Profile;

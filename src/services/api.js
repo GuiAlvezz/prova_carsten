@@ -7,7 +7,7 @@ const api = axios.create({
 
   headers: {
   Authorization:
-  "Bearer pk_fe0f94c09ae9662751ba9f0244a90c3025ef329c6c56bb4f"}
+  "Bearer pk_e902ba0f45aa9305ba5830026a726fd8f5deaf703c0e971b"}
 
 });
 

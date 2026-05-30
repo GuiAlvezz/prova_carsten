@@ -35,7 +35,6 @@ function ResetPassword() {
     }
   }
       navigate("/reset-password");
-      navigate("/");
 
   return (
     <div className="container">
