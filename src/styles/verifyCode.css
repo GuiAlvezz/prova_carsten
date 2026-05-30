@@ -1,0 +1,30 @@
+.card-verify {
+  width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.card-verify h1 {
+  color: #7c3aed;
+  margin-bottom: 20px;
+}
+
+.card-verify input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card-verify button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}

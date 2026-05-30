@@ -1,8 +1,11 @@
 import { useState } from "react";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+import "../styles/forgotPassword.css";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   async function handleForgot(e) {
     e.preventDefault();
@@ -20,7 +23,12 @@ function ForgotPassword() {
     }
   }
 
+  navigate("/reset-password");
+
   return (
+    <div className="container">
+    <div className="card-forgot">
+      <h1>Esqueci minha senha</h1>
     <form onSubmit={handleForgot}>
       <input
         type="email"
@@ -32,6 +40,8 @@ function ForgotPassword() {
         Recuperar senha
       </button>
     </form>
+    </div>
+    </div>
   );
 }
 

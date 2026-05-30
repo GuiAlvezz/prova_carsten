@@ -1,10 +1,13 @@
 import { useState } from "react";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+import "../styles/resetPassword.css";
 
-function ForgotPassword() {
+function ResetPassword() {
   const [email, setEmail] = useState("");
   const [codigo, setCodigo] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
   async function handleForgot(e) {
     e.preventDefault();
@@ -18,7 +21,7 @@ function ForgotPassword() {
     try {
       // Ajustado de "/api/v1/..." para "/v1/..." presumindo que sua 'api' base URL já termina em /api/prova
       await api.post(
-        "/v1/auth/reset-password",
+        "api/v1/auth/reset-password",
         { email, codigo, senha }
       );
 
@@ -31,8 +34,14 @@ function ForgotPassword() {
       alert(msgErro);
     }
   }
+      navigate("/reset-password");
+      navigate("/");
 
   return (
+    <div className="container">
+    <div className="card-reset">
+      <h1>Redefinir Senha</h1>
+
     <form onSubmit={handleForgot} style={{ display: "flex", flexDirection: "column", gap: "10px", maxWidth: "300px" }}>
       
       <label>E-mail:</label>
@@ -66,7 +75,9 @@ function ForgotPassword() {
         Redefinir Senha
       </button>
     </form>
+    </div>
+    </div>
   );
 }
 
-export default ForgotPassword;
+export default ResetPassword;

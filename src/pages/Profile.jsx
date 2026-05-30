@@ -33,13 +33,20 @@ function Profile() {
   }
 
   return (
-    <div>
+    <div className="container">
+    <div className="card-profile">
       <h1>Perfil</h1>
 
       <p>Nome: {user.name}</p>
       <p>Email: {user.email}</p>
     </div>
+    </div>
   );
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  navigate("/");
 }
 
 export default Profile;

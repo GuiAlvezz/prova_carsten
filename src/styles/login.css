@@ -1,0 +1,156 @@
+/* Fundo da página */
+/* body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(96, 165, 250, 0.35), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.45), transparent 55%),
+    linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+  background-attachment: fixed;
+} */
+
+/* Versão escura — combina com o tema dark do card */
+@media (prefers-color-scheme: dark) {
+  body {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.25), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(29, 78, 216, 0.35), transparent 55%),
+      linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+  }
+}
+
+
+
+.card-login {
+  /* Layout */
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 40px);
+
+  /* Aparência */
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 12px 32px -8px rgba(15, 23, 42, 0.12);
+
+  /* Tipografia base */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #aa433c;
+}
+
+.card-login h1 {
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #2563eb;
+}
+
+.card-login form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-login label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.card-login input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.card-login input::placeholder {
+  color: #94a3b8;
+}
+
+.card-login input:hover {
+  border-color: #cbd5e1;
+}
+
+.card-login input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.card-login input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.card-login button {
+  margin-top: 6px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #2563eb;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.05s ease, box-shadow 0.2s ease;
+}
+
+.card-login button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 6px 16px -4px rgba(37, 99, 235, 0.5);
+}
+
+.card-login button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.35);
+}
+
+.card-login button:active {
+  transform: translateY(1px);
+}
+
+.card-login button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .card-login {
+    border-radius: 12px;
+  }
+}
+
+/* Suporte a tema escuro automático */
+@media (prefers-color-scheme: dark) {
+  .card-login {
+    background: #0f172a;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+  }
+  .card-login h1 { color: #60a5fa; }
+  .card-login label { color: #cbd5e1; }
+  .card-login input {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f1f5f9;
+  }
+  .card-login input::placeholder { color: #64748b; }
+  .card-login input:focus { background: #0b1220; border-color: #60a5fa; }
+}
