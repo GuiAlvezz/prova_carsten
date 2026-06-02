@@ -1,175 +1,162 @@
-:root {
-  /* Cores */
-  --color-primary: #16a34a;
-  --color-primary-hover: #15803d;
-  --color-primary-active: #166534;
-  --color-primary-ring: rgba(22, 163, 74, 0.25);
-  --color-bg: #f9fafb;
-  --color-card: #ffffff;
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --color-border-strong: #d1d5db;
-  --color-error: #dc2626;
-
-  /* Forma */
-  --radius: 10px;
-  --radius-card: 16px;
-
-  /* Sombra em camadas (mais natural que uma só) */
-  --shadow-card:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 8px 24px rgba(0, 0, 0, 0.08);
-
-  /* Movimento */
-  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+.container-register {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8% 0 12%;
+  background: var(--page-bg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0b0f15;
-    --color-card: #111827;
-    --color-text: #f3f4f6;
-    --color-text-muted: #9ca3af;
-    --color-border: #1f2937;
-    --color-border-strong: #374151;
-    --shadow-card:
-      0 1px 2px rgba(0, 0, 0, 0.4),
-      0 8px 24px rgba(0, 0, 0, 0.5);
-  }
+.side-image-area {
+  width: 480px;
+  flex-shrink: 0;
+  animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.side-image {
+  width: 100%;
+  animation: floatSmooth 6s ease-in-out infinite;
+  filter: var(--img-shadow);
 }
 
 .card-register {
-  margin-top: 40px;
-  width: 100%;
-  max-width: 440px;
-  margin-inline: auto;
-  background: var(--color-card);
-  color: var(--color-text);
-  padding: clamp(24px, 4vw, 40px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  box-sizing: border-box;
+  width: 420px;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  color: var(--text-primary);
+  padding: 36px;
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideInRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.card-icon {
+  font-size: 44px;
+  margin-bottom: 10px;
 }
 
 .card-register h1 {
-  margin: 0 0 35px;
-  text-align: center;
-  font-size: clamp(1.375rem, 2.5vw, 1.625rem);
+  margin: 0 0 6px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--color-text);
+  letter-spacing: -0.4px;
+  color: var(--text-heading);
 }
 
 .card-register .subtitle {
   text-align: center;
-  margin: 0 0 24px;
-  color: var(--color-text-muted);
-  font-size: 0.9375rem;
+  margin: 0 0 20px;
+  color: var(--text-muted);
+  font-size: 14px;
 }
 
 .card-register form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .card-register .field {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  text-align: left;
 }
 
 .card-register label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-heading);
+  opacity: 0.85;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 16px;
+  pointer-events: none;
+  line-height: 1;
 }
 
 .card-register input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 12px 15px 12px 44px;
   font: inherit;
-  color: var(--color-text);
-  background: var(--color-card);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius);
-  box-sizing: border-box;
-  transition:
-    border-color 0.15s var(--ease),
-    box-shadow 0.15s var(--ease),
-    background 0.15s var(--ease);
-}
-
-.card-register input::placeholder {
-  color: var(--color-text-muted);
-}
-
-.card-register input:hover {
-  border-color: var(--color-text-muted);
-}
-
-.card-register input:focus-visible {
+  color: var(--text-primary);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px var(--color-primary-ring);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.card-register input[aria-invalid="true"] {
-  border-color: var(--color-error);
-}
+.card-register input::placeholder { color: var(--text-muted); opacity: 0.6; }
 
-.card-register input[aria-invalid="true"]:focus-visible {
-  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.2);
+.card-register input:hover { border-color: rgba(250, 204, 21, 0.3); }
+
+.card-register input:focus {
+  border-color: rgba(250, 204, 21, 0.6);
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.1);
 }
 
 .card-register .error {
-  font-size: 0.8125rem;
-  color: var(--color-error);
+  font-size: 12px;
+  color: #f87171;
+  text-align: left;
 }
 
 .card-register button {
-  margin-top: 8px;
-  padding: 12px 16px;
+  margin-top: 4px;
+  padding: 13px 16px;
   font: inherit;
-  font-weight: 600;
-  color: #fff;
-  background: var(--color-primary);
+  font-weight: 700;
+  color: #0a0f1e;
+  background: linear-gradient(135deg, #f59e0b, #facc15, #fbbf24);
   border: none;
-  border-radius: var(--radius);
+  border-radius: 12px;
   cursor: pointer;
-  transition:
-    background 0.15s var(--ease),
-    transform 0.05s var(--ease),
-    box-shadow 0.15s var(--ease);
+  box-shadow: 0 2px 10px rgba(250, 204, 21, 0.18);
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
 }
 
 .card-register button:hover {
-  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(250, 204, 21, 0.22);
+  filter: brightness(1.08);
 }
 
-.card-register button:active {
-  background: var(--color-primary-active);
-  transform: translateY(1px);
-}
-
-.card-register button:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px var(--color-primary-ring);
-}
+.card-register button:active { transform: translateY(1px); }
 
 .card-register button:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Respeita usuários que preferem menos animação */
-@media (prefers-reduced-motion: reduce) {
-  .card-register *,
-  .card-register *::before,
-  .card-register *::after {
-    transition: none !important;
-  }
+@keyframes floatSmooth {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  30%  { transform: translateY(-14px) rotate(0.5deg); }
+  60%  { transform: translateY(-6px) rotate(-0.3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
 }

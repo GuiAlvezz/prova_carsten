@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { useToast } from "../contexts/ToastContext";
+import PasswordInput from "../components/PasswordInput";
 import "../styles/login.css";
+import loginImage from "../assets/login_img.png";
 
 function Login() {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -13,84 +17,53 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await api.post(
-        "/api/v1/auth/login",
-        {
-          email,
-          senha,
-        }
-      );
-
-      console.log(response.data);
-
+      const response = await api.post("/api/v1/auth/login", { email, senha });
       const token = response.data.data.token;
-
       localStorage.setItem("token", token);
-
-      alert("Login realizado com sucesso!");
-
+      showToast("Login realizado com sucesso!", "success");
       navigate("/profile");
 
     } catch (error) {
-      console.error(error);
-
-      const mensagem =
-        error.response?.data?.message ||
-        "Erro ao fazer login";
-
-      alert(mensagem);
+      showToast(error.response?.data?.message || "Erro ao fazer login", "error");
     }
   }
 
   return (
-    <div className="container">
-      <div className="card-login">
+    <div className="login-container">
+      <div className="login-image-area">
+        <img src={loginImage} alt="Login" className="login-image" />
+      </div>
 
+      <div className="login-card">
         <h1>Login</h1>
 
         <form onSubmit={handleLogin}>
-
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Digite seu e-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-
-          <input
-            type="password"
-            placeholder="Senha"
+          <PasswordInput
+            placeholder="Digite sua senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
             required
           />
-
-          <button type="submit">
+          <button type="submit" className="btn-primary">
             Entrar
           </button>
-
         </form>
 
-        <br />
-
-        <button
-          type="button"
-          onClick={() => navigate("/register")}
-        >
-          Criar conta
-        </button>
-
-        <br />
-        <br />
-
-        <button
-          type="button"
-          onClick={() => navigate("/forgot-password")}
-        >
-          Esqueci minha senha
-        </button>
-
+        <div className="actions">
+          <button type="button" className="btn-secondary" onClick={() => navigate("/register")}>
+            Criar Conta
+          </button>
+          <button type="button" className="btn-link" onClick={() => navigate("/forgot-password")}>
+            Esqueci minha senha
+          </button>
+        </div>
       </div>
     </div>
   );

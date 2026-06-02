@@ -6,50 +6,27 @@ import VerifyCode from "./pages/VerifyCode";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
+import ThemeToggle from "./components/ThemeToggle";
+import { ToastProvider } from "./contexts/ToastContext";
+import "./contexts/Toast.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-
-        {/* Tela inicial */}
-        <Route
-          path="/"
-          element={<Login />}
-        />
-
-        {/* Cadastro */}
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-
-        {/* Validação do código após cadastro */}
-        <Route
-          path="/verify-code"
-          element={<VerifyCode />}
-        />
-
-        {/* Recuperação de senha */}
-        <Route
-          path="/forgot-password"
-          element={<ForgotPassword />}
-        />
-
-        {/* Redefinição da senha */}
-        <Route
-          path="/reset-password"
-          element={<ResetPassword />}
-        />
-
-        {/* Área autenticada */}
-        <Route
-          path="/profile"
-          element={<Profile />}
-        />
-
-      </Routes>
-    </BrowserRouter>
+    <ToastProvider>
+      <BrowserRouter>
+        <ThemeToggle />
+        <Routes>
+          <Route path="/"                element={<Login />} />
+          <Route path="/register"        element={<Register />} />
+          <Route path="/verify-code"     element={<VerifyCode />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password"  element={<ResetPassword />} />
+          <Route path="/profile"         element={<Profile />} />
+          <Route path="*"                element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ToastProvider>
   );
 }
 

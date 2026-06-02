@@ -1,34 +1,200 @@
 .profile-container {
-  min-height: 100vh;
-  background: #f4f6f8;
-}
-
-.profile-header {
-  background: #2563eb;
-  color: white;
-  padding: 20px;
-  text-align: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: var(--page-bg);
 }
 
 .profile-card {
-  width: 600px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 700px;
+  max-width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 44px;
+  color: var(--text-primary);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.profile-card h2 {
-  margin-bottom: 15px;
+.profile-header {
+  text-align: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--card-border);
 }
 
-.logout-btn {
-  margin-top: 20px;
-  padding: 12px;
-  background: #dc2626;
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  font-size: 86px;
+  display: block;
+  line-height: 1;
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: 4px;
+  right: -4px;
+  background: #22c55e;
   color: white;
+  font-size: 13px;
+  font-weight: 700;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #020818;
+}
+
+.profile-header h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  color: var(--text-heading);
+  letter-spacing: -0.5px;
+}
+
+.email {
+  display: block;
+  color: var(--text-email);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.role-badge {
+  display: inline-block;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.info-item {
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  padding: 14px 16px;
+  border-radius: 16px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.info-item:hover {
+  border-color: rgba(250, 204, 21, 0.25);
+}
+
+.info-item span {
+  display: block;
+  color: var(--text-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.info-item strong {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.status-ok     { color: #4ade80; }
+.status-pending { color: #fbbf24; }
+
+.stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px 12px;
+  text-align: center;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+.stat-box h2 {
+  font-size: 28px;
+  margin: 0 0 4px;
+  color: var(--text-heading);
+}
+
+.stat-box p {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 14px;
   border: none;
-  border-radius: 8px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+}
+
+.btn-password {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb, #3b82f6);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.2);
+}
+
+.btn-password:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+  filter: brightness(1.1);
+}
+
+.btn-logout {
+  background: linear-gradient(135deg, #f59e0b, #facc15, #fbbf24);
+  color: #0a0f1e;
+  box-shadow: 0 2px 10px rgba(250, 204, 21, 0.15);
+}
+
+.btn-logout:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
+  filter: brightness(1.08);
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
